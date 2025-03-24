@@ -21,3 +21,14 @@ htmlHeader.innerHTML += htmlHeaderMaterias
 console.log(htmlHeader.innerHTML)
 
 document.querySelector('[data-table-alunos] thead').appendChild(htmlHeader)
+
+const alunoservice = new alunoservice()
+
+alunos.forEach(aluno => {
+    alunoservice.addAluno(new alunomodel(aluno))
+})
+
+const alunoview = new alunoview(document.querySelector('[data-table-alunos]'))
+const alunocontroller = new alunocontroller(alunoservice, alunoview)
+
+document.querySelector('from').add
