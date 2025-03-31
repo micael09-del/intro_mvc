@@ -1,34 +1,23 @@
-alunos.forEach(aluno => {
-    aluno.media = {}
-    for(let materia in aluno.notas) {
-        aluno.media[materia] = average(...aluno.notas[materia])
-    }
- })
+const MateriaService = new MateriaService() 
+let materias = MateriaService.getALL()
+if(materias.lenght === 0) {
+    MateriaService.add(new MateriaModel({nome: 'back-end1'}))
+    MateriaService.add(new MateriaModel({nome: 'front-end2'}))
+    MateriaService.add(new MateriaModel({nome: 'banco de dados'}))
+    MateriaService.add(new MateriaModel({nome: 'ferramentas web'}))
+}
 
- console.log(alunos)
+const AlunoService = new AlunoService()
 
- const htmlHeader = document.createElement('tr')
- htmlHeader.innerHTML = '<td>Nome</td>'
+const alunoview = new AlunoView(
+    document.querySelector('[data-table-alunos]'),
+    materiaService.getALL())
+    
 
- const htmlHeaderMaterias = Object.keys(alunos[0].notas).map(materia => {
-    console.log(materia)
-    return `<td>${materia}</td>`
- }).join('')
+const alunoController = new AlunoController(alunoview, AlunoService, MateriaService)
 
-
-console.log(htmlHeaderMaterias)
-htmlHeader.innerHTML += htmlHeaderMaterias
-console.log(htmlHeader.innerHTML)
-
-document.querySelector('[data-table-alunos] thead').appendChild(htmlHeader)
-
-const alunoservice = new alunoservice()
-
-alunos.forEach(aluno => {
-    alunoservice.addAluno(new alunomodel(aluno))
+document.querySelector('from').addEventListener('submit', function (event) {
+    event.preventDefault()
+    alunoController.adiciona(event.target)
+    event.target.reset()
 })
-
-const alunoview = new alunoview(document.querySelector('[data-table-alunos]'))
-const alunocontroller = new alunocontroller(alunoservice, alunoview)
-
-document.querySelector('from').add

@@ -17,3 +17,4 @@ class alunomodel {
     }
 }
 
+alunomodel.maxId = 0

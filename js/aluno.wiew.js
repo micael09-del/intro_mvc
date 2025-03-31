@@ -1,9 +1,9 @@
 class alunoview{
-    constructor(table) {
+    constructor(table, materias) {
         this.tablelist = table
         this.tableheader = this.tablelist.querySelector('thead')
         this.tablebody = this.tablelist.querySelector('tbody')
-        this.materias = ["backend_1", "frontend_2", "bancodados_3", "ferramentas"]
+        this.materias = materias
 
         this.renderHeader()
     }
@@ -13,7 +13,7 @@ class alunoview{
         htmlHeader.innerHTML = '<td>Nome</td>'
     
         const htmlHeaderMaterias = this.materias.map(materia => {
-            return `<td>${materia}</td>`
+            return `<td>${materia.nome}</td>`
         }).join('')
     
         htmlHeader.innerHTML += htmlHeaderMaterias
@@ -32,5 +32,15 @@ class alunoview{
             this.tablebody.appendChild(htmlrow)
         });
     }
+}
+
+if(encontrado) {
+    this.materias.forEach(materia => {
+        htmlrow.innerHTML += `<td>${aluno.notas[materia]}</td>`
+    })      
+} else {
+    this.materias.forEach(materia => {
+        htmlrow.innerHTML += `<td>0</td>`
+    })
 }
 
